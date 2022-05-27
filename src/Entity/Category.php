@@ -16,6 +16,9 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Program::class)]
+    private $programs;
+
     public function getId(): ?int
     {
         return $this->id;
