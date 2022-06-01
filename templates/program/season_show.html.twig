@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div
+		class="media">
+
+		<!--<img class="align-self-start mr-3" src="{# program.poster #}" alt="{# program.title #} poster">-->
+
+		<div class="media-body">
+
+
+			{% for season in seasons %}
+
+				<a><h1 class="mt-0">Saison n°{{ season.number }}
+					de
+					{{ program.title }}</h1></a>
+
+				<p>Année :
+					{{ season.year }}</p>
+
+				<p>Description :
+					{{ season.description }}</p>
+
+					{% endfor %}
+
+							
+
+					<h4>Liste des épisodes :</h4>
+						{% for episode in season.episodes %}
+
+			<p>{{episode.number}} : {{episode.title}}</p>
+
+			{% endfor %}
+
+
+		</div>
+
+	</div>
+
+
+	<a href="{{ path('program_index') }}">
+
+		Retour à la liste des programmes
+
+	</a>
+
+{% endblock %}
