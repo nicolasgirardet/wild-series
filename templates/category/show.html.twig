@@ -6,9 +6,8 @@
 {% block body %}
 	{% for program in programs %}
 		<div>
-			<h2>{{ loop.index }}
-				/
-				{{ program.title }} - {{ program.id }}
+			<h2>{{loop.index }} /				
+				{{ program.title }}
 			</h2>
             <p>
                 {{ program.synopsis }}
@@ -22,5 +21,6 @@
     {% else %}
         Aucune série n'a été trouvée.
 	{% endfor %}
+
 
 {% endblock %}

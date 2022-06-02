@@ -21,6 +21,17 @@
 
 		</div>
 
+		{% for episode in episodes %}
+
+			<p>Épisode numéro : {{episode.number}}</p>
+			<p>Épisode titre : {{episode.title}}</p>
+		
+					{# Lien vers le détail de l'épisode : #}
+			<a href="{{ path("program_episode_show", {"program": program.id, "season": season.id, "episode": episode.id })}}">Voir le détail de l'épisode.</a>
+
+
+		{% endfor %}
+
 	</div>
 
 

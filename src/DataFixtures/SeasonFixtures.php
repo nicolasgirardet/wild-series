@@ -38,14 +38,14 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
 
          */
 
-        for($p = 0; $p <= 7; $p++){
-            for($s = 1; $s <= 10; $s++){
+        for($i = 0; $i <= 12; $i++){
+            for($j = 1; $j <= 10; $j++){
             //$season->setNumber($faker->numberBetween(1, 10));
             $season = new Season();
             $season->setYear($faker->year());
             $season->setDescription($faker->paragraphs(3, true));
-            $season->setProgram($this->getReference('program_' . $p));
-            $season->setNumber($s);
+            $season->setProgram($this->getReference('program_' . $i));
+            $season->setNumber($j);
                 
             $manager->persist($season);
             $this->setReference('season_' . $season->getNumber(), $season);
@@ -61,36 +61,4 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
             ProgramFixtures::class,
         ];
     }
-
-
-        /*for ($i = 0; $i < $nbOfPrograms; $i++) {
-            $program = $this->getReference('program_' . $i);
-
-            for ($j = 0; $j <= $nbOfPrograms; $j++) {
-
-                //Ce Faker va nous permettre d'alimenter l'instance de Season que l'on souhaite ajouter en base
-                
-                $season = new Season();
-                
-                $season->setNumber($j + 1)
-                    ->setYear($faker->year())
-                    ->setDescription($faker->paragraphs(2, true))
-                    ->setProgram($this->getReference('program_' . $faker->numberBetween(0, 11)));
-
-
-                $manager->persist($season);
-            }
-        }
-
-
-        $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        // Tu retournes ici toutes les classes de fixtures dont ProgramFictures dépend
-        return [
-            ProgramFixtures::class,
-        ];
-    }*/
 }

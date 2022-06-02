@@ -9,16 +9,18 @@
 
 		<div class="media-body">
 
-			<h1>{{program.title}} : saison #{{ season.number }}</h1>
+			<h1>{{program.title}} : saison {{ season.number }}</h1>
 
 
 			<h2>Épisode {{episode.number}}
 					:
-					"{{episode.title}}":</h2>
+					"{{episode.title}}"</h2>
 		
-			
+			<p><b>Résumé :</b></p>
+			<p>{{ episode.synopsis }}</p>
 
-		
+		 
+
 
 
 		</div>
