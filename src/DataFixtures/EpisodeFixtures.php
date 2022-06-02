@@ -37,7 +37,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         for($s = 1; $s <= 5; $s++) {
             for($e = 1; $e <= 10; $e++) {
                 $episode = new Episode();
-                $episode->setTitle($faker->title());
+                $episode->setTitle($faker->sentence());
                 $episode->setNumber($e);
                 $episode->setSynopsis($faker->paragraphs(3, true));
                 $episode->setSeason($this->getReference('season_' . $s));
