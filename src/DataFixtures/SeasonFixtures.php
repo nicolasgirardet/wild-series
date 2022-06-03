@@ -38,10 +38,9 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
 
          */
 
-        for($i = 0; $i <= 12; $i++){
-            for($j = 1; $j <= 10; $j++){
-            //$season->setNumber($faker->numberBetween(1, 10));
-            $season = new Season();
+        for($i = 0; $i <= 10; $i++){
+            for($j = 1; $j <= 12; $j++){
+             $season = new Season();
             $season->setYear($faker->year());
             $season->setDescription($faker->paragraphs(3, true));
             $season->setProgram($this->getReference('program_' . $i));
