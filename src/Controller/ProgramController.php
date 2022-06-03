@@ -13,7 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Form\ProgramType;
 
 
 #[Route('/program', name: 'program_')]
@@ -33,7 +35,25 @@ class ProgramController extends AbstractController
         ]);
     }
 
-        //test ci-dessous 
+    #[Route('/new', name: 'new')]
+    public function new(Request $request, ProgramRepository $programRepository): Response
+    {
+        // Create the new Category Object
+        $program = new Program();
+        // Create the associated form, linked with $category
+        $form = $this->createForm(ProgramType::class, $program);
+        // Get data from HTTP request
+        $form->handleRequest($request);
+        // Was the form submitted?
+        if($form->isSubmitted()) {
+            // Deal with the submitted data
+            $programRepository->add($program, true);
+        }
+        // Render the form (best practice)
+        return $this->renderForm('program/new.html.twig', 
+        [ 'form' => $form, ]);
+    }
+
     #[Route('/{id}', name: 'show')]
     public function show(Program $program, SeasonRepository $seasonRepository): Response
     {
