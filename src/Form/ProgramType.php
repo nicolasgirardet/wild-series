@@ -17,7 +17,7 @@ class ProgramType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('synopsis', TextType::class)
-            //->add('poster')
+            ->add('poster', TextType::class)
             ->add('category', EntityType::class,
             [
                 'class' => Category::class,
