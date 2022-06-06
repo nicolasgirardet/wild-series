@@ -6,8 +6,14 @@ use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity(
+    fields: ['title'],
+    message: 'Ce titre existe déjà.',
+   )]
 class Program
 {
     #[ORM\Id]
@@ -15,10 +21,21 @@ class Program
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique:true)]
+    #[Assert\NotBlank(message: 'Un titre doit être saisi.')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le titre saisi {{ value }} est trop long. Il ne peut pas contenir plus de {{ limit }} caractères.',
+    )]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: 'Un synopsis doit être saisi.')]
+    #[Assert\Regex(
+        pattern: '/plus belle la vie/i',
+        match: false,
+        message: 'On parle de vraies séries ici',
+    )]
     private $synopsis;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -35,8 +52,6 @@ class Program
     {
         $this->season = new ArrayCollection();
     }
-
-
 
     public function getId(): ?int
     {
