@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ses séries{% endblock %}
+
+{% block body %}
+
+    <h2>Séries où {{ actor.name }} a joué :</h2>
+
+    {% for program in actor.programs %}
+
+    <h4><a href="{{ path("program_show", { 'id': program.id }) }}">- {{ program.title }}</a>
+</h4>
+
+    {% endfor %}
+
+    <a href="{{ path('actor_index') }}">Retour à la liste</a>
+
+{% endblock %}
